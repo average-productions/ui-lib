@@ -1,0 +1,75 @@
+@mixin dark-props {
+  --color-text: #fff;
+  --color-bg: #252d46;
+  --color-fg: #434e71;
+  --box-shadow: 0 4px 16px -7px var(--black1000);
+  --color-button-ghost-border: #b8dbff;
+  --color-button-ghost-text: #b8dbff;
+  --color-button-ghost-hover: #252d46;
+  --color-link: var(--blue400);
+  --color-input: var(--blue100);
+  --color-input-border: #49557a;
+}
+
+:root {
+  // https://lukasckuehne.medium.com/we-created-an-accessible-range-of-ui-colors-8a1a51e4e8f6
+  /* Basic colors */
+  --white: #ffffff;
+  --black: #000000;
+
+  --green1000: #005c2e;
+  --green900: #006633;
+  --green: #007d3e;
+  --green700: #008744;
+  --green600: #009e4f;
+  --green100: #e6f2ec;
+  --green50: #f2f8f5;
+
+  --blue1000: #0047b0;
+  --blue900: #0053bf;
+  --blue: #0065cb;
+  --blue700: #0074e8;
+  --blue600: #0080ff;
+  --blue400: #5eaeff;
+  --blue100: #e5eff9;
+  --blue50: #f2f7fc;
+
+  --red1000: #9e0012;
+  --red900: #b50015;
+  --red: #cc071e;
+  --red700: #ed001c;
+  --red600: #ff001e;
+  --red100: #f9e6e8;
+  --red50: #fcf2f4;
+
+  --black1000: #1c1c1c;
+  --black800: #676767;
+  --black700: #757575;
+  --black600: #949494;
+  --black300: #cccccc;
+  --black100: #f1f1f1;
+  --black50: #f8f8f8;
+
+  --color-button: var(--blue);
+  --color-button-hover: var(--blue600);
+  --color-button-ghost-border: var(--blue);
+  --color-button-ghost-text: var(--color-button);
+  --color-button-ghost-hover: var(--blue100);
+  --box-shadow: 0 4px 16px -7px var(--blue400);
+  --box-shadow-hover: 0 4px 16px -7px transparent;
+  --color-text: #2e2d2e;
+  --color-bg: #f8faff;
+  --color-bg: #ebeff9;
+  --color-fg: var(--white);
+  --color-link: var(--blue);
+  --color-input: #49557a;
+  --color-input-border: #b9c0de;
+
+  @media (prefers-color-scheme: dark) {
+    @include dark-props;
+  }
+}
+
+.dark {
+  @include dark-props;
+}

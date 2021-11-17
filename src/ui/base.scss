@@ -1,0 +1,77 @@
+@import "./media.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --header-height: 50px;
+
+  @include tablet {
+    --header-height: 60px;
+  }
+}
+
+.app {
+  color: var(--color-text);
+
+  header {
+    padding: 5px 6px;
+
+    @include landscape {
+      padding: 10px 15px;
+    }
+
+    ul {
+      display: flex;
+    }
+
+    li {
+      margin: 0 10px 0 0;
+
+      @media (min-width: 1074px) {
+        margin: 0 20px 0 -10px;
+      }
+    }
+
+    a {
+      padding: 8px 10px;
+      border-radius: 5px;
+      color: var(--color-link);
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: var(--blue100);
+      }
+    }
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  section {
+    padding: 0 16px;
+
+    @include landscape {
+      padding: 0 25px;
+    }
+  }
+
+  article {
+    max-width: $desktop;
+    margin: 0 auto;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-input-border);
+    margin: 40px 0;
+
+    &.small {
+      margin: 20px 0;
+    }
+  }
+}
