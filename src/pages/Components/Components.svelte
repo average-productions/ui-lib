@@ -4,6 +4,7 @@
   import Typography from "./Typography.svelte";
   import Buttons from "./Buttons.svelte";
   import ComponentsHome from "./ComponentsHome.svelte";
+  import TextInputComponent from "./TextInputComponent.svelte";
 </script>
 
 <Route path="/">
@@ -16,4 +17,8 @@
 
 <Route path={componentRoutes.TYPOGRAPHY.path}>
   <Typography />
+</Route>
+
+<Route path={componentRoutes.TEXT_INPUT.path}>
+  <TextInputComponent />
 </Route>

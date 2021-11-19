@@ -9,4 +9,5 @@ export const componentRoutes = {
     path: "typography",
   },
   BUTTONS: { label: "Buttons", path: "buttons" },
+  TEXT_INPUT: { label: "Text input", path: "text-input" },
 };
