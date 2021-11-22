@@ -14,3 +14,13 @@ export type mediaName =
   | "desktop-plus"
   | "wide"
   | "super";
+
+export enum MediaName {
+  MOBILE = "mobile",
+  LANDSCAPE = "landscape",
+  TABLET = "tablet",
+  DESKTOP = "desktop",
+  DESKTOP_PLUS = "desktop-plus",
+  WIDE = "wide",
+  SUPER = "super",
+}

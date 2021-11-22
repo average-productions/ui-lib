@@ -46,7 +46,10 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
-    replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      preventAssignment: true,
+    }),
     svelte({
       preprocess: sveltePreprocess({ sourceMap: !production, style: sass() }),
       compilerOptions: {

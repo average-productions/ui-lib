@@ -7,15 +7,17 @@
   export let required = false;
 </script>
 
-<label for={id}>
-  {#if label}
-    <div class="input-label">
+<label for={id} class={!!value ? "has-value" : ""}>
+  <div class="input-label">
+    {#if label}
       <div class="label">{label}</div>
-      {#if required}
-        <div class="required-tag">Required</div>
-      {/if}
-    </div>
-  {/if}
+    {:else}
+      <div />
+    {/if}
+    {#if required}
+      <div class="required-tag">Required</div>
+    {/if}
+  </div>
 
   <input {id} {name} bind:value {required} />
 </label>
@@ -25,12 +27,12 @@
 
   .input-label {
     font-size: 1.5rem;
-    font-weight: 500;
     line-height: 1.4;
     padding: 2px 0 4px 10px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    font-weight: 500;
 
     @include tablet {
       font-size: 1.7rem;
@@ -44,6 +46,7 @@
     &:hover,
     &:focus-within {
       background-color: var(--color-slate);
+      box-shadow: 0 0 16px -6px var(--color-slate);
       // background-color: #f2f2f2;
 
       // .input-label {
@@ -76,6 +79,13 @@
   .label {
     flex: 1 0 auto;
     max-width: calc(100% - 100px);
+  }
+
+  .has-value {
+    .required-tag {
+      background-color: transparent;
+      color: var(--color-input-tag);
+    }
   }
 
   .required-tag {

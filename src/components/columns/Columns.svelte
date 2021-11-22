@@ -57,6 +57,13 @@
     }
   }
 
+  :global(.columns > .full, .columns.landscape > .full, .columns.tablet
+      > .full, .columns.desktop > .full, .columns.desktop-plus
+      > .full, .columns.wide > .full, .columns.super > .full, ) {
+    flex: 1 0 100%;
+    max-width: 100%;
+  }
+
   .columns {
     &.mobile {
       @include flex-props;

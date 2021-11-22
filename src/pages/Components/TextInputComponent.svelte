@@ -3,6 +3,7 @@
   import Page from "../Page.svelte";
   import Input from "../../components/input/Input.svelte";
   import Columns from "../../components/columns/Columns.svelte";
+  import { MediaName } from "../../models/types";
 
   let valueOne = "Demo input";
   let valueTwo = "Demo input";
@@ -15,7 +16,7 @@
 
   <h1>Text input</h1>
 
-  <Columns media="desktop">
+  <Columns media={MediaName.TABLET}>
     <div>
       <Input
         name="text-input-demo"
@@ -28,11 +29,18 @@
       <Input name="text-input-demo" label="Demo input" bind:value={valueTwo} />
     </div>
 
+    <div class="full">
+      <hr />
+    </div>
+
     <div>
-      <Input name="text-input-demo" bind:value={valueTwo} />
+      <Input name="text-input-demo" required bind:value={valueTwo} />
     </div>
   </Columns>
 </Page>
 
 <style lang="scss">
+  div {
+    margin: 20px 0 0 0;
+  }
 </style>
