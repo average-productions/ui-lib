@@ -24,3 +24,19 @@ export enum MediaName {
   WIDE = "wide",
   SUPER = "super",
 }
+
+export enum Status {
+  DEFAULT = "",
+  DISABLED = "is-disabled",
+  PENDING = "is-pending",
+  ERROR = "has-error",
+  SUCCESS = "was-successful",
+}
+
+export interface Dynamic {
+  [key: string]: any;
+}
+
+export interface DynamicOfType<T> {
+  [key: string]: T;
+}

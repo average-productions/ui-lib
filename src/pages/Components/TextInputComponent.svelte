@@ -20,13 +20,25 @@
     <div>
       <Input
         name="text-input-demo"
-        required
         label="Demo input"
         bind:value={valueOne}
+        valid={false}
+        props={{
+          required: true,
+        }}
       />
     </div>
     <div>
-      <Input name="text-input-demo" label="Demo input" bind:value={valueTwo} />
+      <Input
+        name="text-input-demo"
+        label="Demo input"
+        props={{
+          minLength: "3",
+          maxLength: "10",
+          required: true,
+        }}
+        bind:value={valueTwo}
+      />
     </div>
 
     <div class="full">
