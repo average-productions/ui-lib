@@ -6,7 +6,7 @@
   export let name;
   export let label = "";
   export let props: Dynamic = {};
-  export let valid;
+  export let valid = true;
 
   let input;
 
@@ -18,32 +18,35 @@
   const showLabel = !!label || props.required;
 </script>
 
-<label
-  for={id}
-  class={`${valid === false && "has-error"} ${!!value ? "has-value" : ""}`}
+<div
+  class={`input-wrapper ${valid === false && "has-error"} ${
+    !!value ? "has-value" : ""
+  }`}
 >
-  <div class={`input-label ${!showLabel && "hide"}`}>
-    {#if label}
-      <div class="label">{label}</div>
-    {:else}
-      <div />
-    {/if}
-    {#if props.required}
-      <div class="required-tag">Required</div>
-    {/if}
-  </div>
+  <label for={id}>
+    <div class={`input-label ${!showLabel && "hide"}`}>
+      {#if label}
+        <div class="label">{label}</div>
+      {:else}
+        <div />
+      {/if}
+      {#if props.required}
+        <div class="required-tag">Required</div>
+      {/if}
+    </div>
 
-  <div class="input-wrapper">
-    <input
-      {id}
-      {name}
-      bind:value
-      on:blur={onBlur}
-      bind:this={input}
-      {...props}
-    />
-  </div>
-</label>
+    <div class="input-field">
+      <input
+        {id}
+        {name}
+        bind:value
+        on:blur={onBlur}
+        bind:this={input}
+        {...props}
+      />
+    </div>
+  </label>
+</div>
 
 <style lang="scss">
   @import "../../ui/media.scss";
@@ -60,8 +63,7 @@
     display: none;
   }
 
-  label {
-    border-radius: 5px;
+  .input-wrapper {
     display: block;
 
     &.has-error {
@@ -70,16 +72,22 @@
         color: var(--white);
       }
 
-      .input-wrapper {
+      .input-field {
         border: 1px solid var(--red);
+      }
+
+      .required-tag {
+        background-color: transparent;
+        color: var(--color-input-tag);
       }
 
       input {
         border: 1px solid var(--red);
-        padding: 0 8px;
       }
     }
+  }
 
+  .input-wrapper > label {
     &:hover,
     &:focus-within {
       .label {
@@ -87,7 +95,7 @@
         color: var(--white);
       }
 
-      .input-wrapper {
+      .input-field {
         border: 1px solid var(--color-slate);
         box-shadow: 0 0 16px -6px var(--color-slate);
       }
@@ -99,7 +107,6 @@
 
       input {
         border: 1px solid var(--color-slate);
-        padding: 0 8px;
       }
     }
   }
@@ -131,7 +138,7 @@
     transition: background-color 300ms ease, color 300ms ease;
   }
 
-  .input-wrapper {
+  .input-field {
     border: 1px solid var(--color-input-border);
     border-radius: 5px;
     transition: box-shadow 300ms ease, border-color 300ms ease;
