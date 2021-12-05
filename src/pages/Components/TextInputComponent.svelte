@@ -3,13 +3,15 @@
   import Page from "../Page.svelte";
   import Input from "../../components/input/Input.svelte";
   import Columns from "../../components/columns/Columns.svelte";
-  import { MediaName } from "../../models/types";
+  import { MediaName, Status } from "../../models/types";
   // import adjustable from "../../components/adjustable/Adjustablef";
   import Adjustable from "../../components/adjustable/Adjustable.svelte";
   import BlueThing from "./BlueThing.svelte";
   import RedThing from "./RedThing.svelte";
+  import Retry from "../../components/retry/Retry.svelte";
+  import Card from "../../components/card/Card.svelte";
 
-  let valueOne = "Demo input";
+  let valueOne;
   let valueTwo = "Demo input";
 
   let redProp = "visible";
@@ -42,6 +44,24 @@
     redProp = "hidden";
     component = BlueThing;
   }
+
+  let status = Status.PENDING;
+  function setStatusPending() {
+    status = Status.PENDING;
+  }
+
+  function setStatusError() {
+    status = Status.ERROR;
+  }
+
+  function setStatusDefault() {
+    status = Status.DEFAULT;
+  }
+
+  function retry() {
+    status = Status.PENDING;
+    setTimeout(() => (status = Status.DEFAULT), 300);
+  }
 </script>
 
 <Page title="Text input">
@@ -65,8 +85,8 @@
         name="text-input-demo"
         label="Demo input"
         props={{
-          minLength: "3",
-          maxLength: "10",
+          minLength: 3,
+          maxLength: 10,
           required: true,
         }}
         bind:value={valueTwo}
@@ -82,6 +102,26 @@
     </div>
   </Columns>
 
+  <button on:click={setStatusPending}> status pending </button>
+
+  <button on:click={setStatusError}> status error </button>
+
+  <button on:click={setStatusDefault}> status default </button>
+
+  <div class="retry-component">
+    <Retry {status} {retry}>
+      <Card>
+        This is because size is a property on the element, but class is not.
+        Because Svelte detects a size property, it chooses to set that property
+        instead of an attribute. There is no class property, so Svelte sets it
+        as an attribute instead. That’s not a problem or something that changes
+        how we expect the component to behave, but can be very confusing if
+        you’re unaware of it, because there’s a disconnect between the HTML you
+        think you’re writing and what Svelte actually outputs.
+      </Card>
+    </Retry>
+  </div>
+
   <button on:click={handleClick}> toggle </button>
   <!-- <button on:click={updateProp}> updateProp </button> -->
   <button on:click={resetProp}> resetProp </button>
@@ -96,14 +136,14 @@
     Lord When I lay my vengeance upon thee
   </p>
 
-  <Adjustable name={redProp}>
+  <!-- <Adjustable name={redProp}>
     <svelte:component this={component} evil={valueOne} />
-    <!-- {#if isRed}
+    {#if isRed}
       <RedThing {redProp} />
     {:else}
       <BlueThing />
-    {/if} -->
-  </Adjustable>
+    {/if}
+  </Adjustable> -->
 
   <p>
     The path of the righteous man is beset on all sides By the inequities of the
@@ -119,5 +159,9 @@
 <style lang="scss">
   div {
     margin: 20px 0 0 0;
+  }
+
+  .retry-component {
+    margin: 100px 0;
   }
 </style>

@@ -59,13 +59,13 @@
   --box-shadow: 0 4px 16px -7px var(--blue400);
   --box-shadow-hover: 0 4px 16px -7px transparent;
   --color-text: #2e2d2e;
-  --color-bg: #f8faff;
   --color-bg: #ebeff9;
   --color-fg: var(--white);
   --color-link: var(--blue);
   --color-input: #49557a;
   --color-input-tag: #586e8d;
   --color-input-border: #b9c0de;
+  --color-card-bg: var(--white);
 
   @media (prefers-color-scheme: dark) {
     @include dark-props;

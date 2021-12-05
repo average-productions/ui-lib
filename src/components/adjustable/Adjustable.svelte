@@ -1,19 +1,9 @@
 <script lang="ts">
   import { beforeUpdate, afterUpdate, onMount, onDestroy } from "svelte";
-  let elem;
-  let hasMounted = false;
-  let count = 0;
-  let isAnimating = false;
-  let nextElement = null;
   export let name;
+  let isAnimating = true;
+  let elem;
   let prevName;
-
-  // afterUpdate(async () => {
-  //   hasMounted = true;
-  // });
-
-  console.log("name", name);
-  console.log("prevName", prevName);
 
   async function nextFrame() {
     return new Promise(requestAnimationFrame);
@@ -27,6 +17,7 @@
 
     if (ev.propertyName === "opacity") {
       if ("0" === elem.style.opacity) {
+        elem.classList.remove("invisible");
         elem.lastChild.remove();
         await nextFrame();
         elem.style.height = `${elem.firstChild.scrollHeight}px`;
@@ -43,8 +34,9 @@
   };
 
   onMount(() => {
-    console.log("mount");
     elem.addEventListener("transitionend", onTransitionEnd);
+    isAnimating = false;
+    prevName = name;
   });
 
   onDestroy(() => {
@@ -52,21 +44,6 @@
   });
 
   beforeUpdate(async () => {
-    // console.log("adjustable update");
-    // return;
-    // console.log("elem", elem);
-    // if (!hasMounted) {
-    //   return;
-    // }
-
-    // console.log("fucker before update", $$slots);
-    // console.log("current", current);
-    // if (!current) {
-    //   return;
-    // }
-
-    // console.log("hasMounted", hasMounted);
-
     if (isAnimating) {
       return;
     }
@@ -80,17 +57,11 @@
     }
 
     prevName = name;
-
-    count++;
-
-    if (count < 2) {
-      return;
-    }
-
     isAnimating = true;
     const clonedElement = elem.firstChild.cloneNode(true);
     clonedElement.classList.add("prev-element");
     const height = `${elem.getBoundingClientRect().height}px`;
+    elem.classList.add("invisible");
     elem.style.height = height;
     elem.style.overflow = "hidden";
     elem.appendChild(clonedElement);
@@ -111,14 +82,16 @@
     transition: opacity 500ms ease, height 300ms ease;
   }
 
+  :global(.invisible > div:first-child) {
+    opacity: 0;
+  }
+
   :global(.adjustable > .prev-element) {
-    // background-color: green;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 10;
-    // opacity: 0.4;
   }
 </style>

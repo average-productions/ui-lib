@@ -1,7 +1,8 @@
 <script lang="ts">
   import { nanoid } from "nanoid";
-  import type { Dynamic } from "../../models/types";
   const id = nanoid();
+  import type { Dynamic } from "../../models/types";
+  import Label from "./Label.svelte";
   export let value;
   export let name;
   export let label = "";
@@ -14,8 +15,6 @@
     valid = input.validity.valid;
     console.log("valid", valid);
   };
-
-  const showLabel = !!label || props.required;
 </script>
 
 <div
@@ -24,16 +23,7 @@
   }`}
 >
   <label for={id}>
-    <div class={`input-label ${!showLabel && "hide"}`}>
-      {#if label}
-        <div class="label">{label}</div>
-      {:else}
-        <div />
-      {/if}
-      {#if props.required}
-        <div class="required-tag">Required</div>
-      {/if}
-    </div>
+    <Label {value} {props} {label} />
 
     <div class="input-field">
       <input
@@ -51,14 +41,6 @@
 <style lang="scss">
   @import "../../ui/media.scss";
 
-  .input-label {
-    line-height: 1.4;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    font-weight: 600;
-  }
-
   .hide {
     display: none;
   }
@@ -67,18 +49,8 @@
     display: block;
 
     &.has-error {
-      .label {
-        background-color: var(--red);
-        color: var(--white);
-      }
-
       .input-field {
         border: 1px solid var(--red);
-      }
-
-      .required-tag {
-        background-color: transparent;
-        color: var(--color-input-tag);
       }
 
       input {
@@ -90,52 +62,15 @@
   .input-wrapper > label {
     &:hover,
     &:focus-within {
-      .label {
-        background-color: var(--color-slate);
-        color: var(--white);
-      }
-
       .input-field {
         border: 1px solid var(--color-slate);
         box-shadow: 0 0 16px -6px var(--color-slate);
-      }
-
-      .required-tag {
-        background-color: transparent;
-        color: var(--color-input-tag);
       }
 
       input {
         border: 1px solid var(--color-slate);
       }
     }
-  }
-
-  .label {
-    flex: 0 0 auto;
-    max-width: calc(100% - 100px);
-    transition: background-color 300ms ease, color 300ms ease;
-    padding: 0 10px;
-    margin: 0 0 5px 0;
-    border-radius: 5px;
-  }
-
-  .has-value {
-    .required-tag {
-      background-color: transparent;
-      color: var(--color-input-tag);
-    }
-  }
-
-  .required-tag {
-    color: var(--white);
-    background-color: var(--blue700);
-    flex: 0 0 auto;
-    padding: 0 5px;
-    margin: 0 0 5px 0;
-    border-radius: 5px;
-    font-style: italic;
-    transition: background-color 300ms ease, color 300ms ease;
   }
 
   .input-field {
