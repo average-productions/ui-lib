@@ -2,8 +2,8 @@
   import type { Dynamic } from "../../models/types";
   import RequiredTag from "./RequiredTag.svelte";
 
-  export let label;
-  export let value;
+  export let label: string;
+  export let value: string;
   export let props: Dynamic = {};
   const showLabel = !!label || props.required;
 </script>

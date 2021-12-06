@@ -1,27 +1,40 @@
 <script lang="ts">
-  import { nanoid } from "nanoid";
-  const id = nanoid();
   import type { Dynamic } from "../../models/types";
+  import { Status } from "../../models/types";
   import Label from "./Label.svelte";
-  export let value;
-  export let name;
+  import { nanoid } from "nanoid";
+  import InputStatus from "./InputStatus.svelte";
+
+  const id = nanoid();
+  export let name: string;
+  export let value = "";
   export let label = "";
   export let props: Dynamic = {};
+  export let messages: Dynamic = {};
+  export let hint = "";
   export let valid = true;
-
-  let input;
+  let status: Status = Status.DEFAULT;
+  let input: HTMLInputElement;
+  let error = "";
 
   const onBlur = () => {
     valid = input.validity.valid;
-    console.log("valid", valid);
+    if (!valid) {
+      status = Status.ERROR;
+      let propName = "";
+      for (let key in input.validity) {
+        if (input.validity[key]) {
+          propName = key;
+        }
+      }
+      error = messages[propName] || "Something is wrong";
+    } else {
+      status = Status.SUCCESS;
+    }
   };
 </script>
 
-<div
-  class={`input-wrapper ${valid === false && "has-error"} ${
-    !!value ? "has-value" : ""
-  }`}
->
+<div class={`input-wrapper ${status}`} class:has-value={!!value}>
   <label for={id}>
     <Label {value} {props} {label} />
 
@@ -29,13 +42,18 @@
       <input
         {id}
         {name}
-        bind:value
         on:blur={onBlur}
+        bind:value
         bind:this={input}
         {...props}
       />
     </div>
   </label>
+
+  <InputStatus {status}>
+    <i slot="hint">{hint}</i>
+    <i slot="has-error">{error}</i>
+  </InputStatus>
 </div>
 
 <style lang="scss">

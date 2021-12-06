@@ -26,7 +26,7 @@ export enum MediaName {
 }
 
 export enum Status {
-  DEFAULT = "",
+  DEFAULT = "default",
   DISABLED = "is-disabled",
   PENDING = "is-pending",
   ERROR = "has-error",

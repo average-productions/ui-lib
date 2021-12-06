@@ -78,6 +78,7 @@
         props={{
           required: true,
         }}
+        hint="Type something will ya"
       />
     </div>
     <div>
@@ -90,6 +91,12 @@
           required: true,
         }}
         bind:value={valueTwo}
+        hint="Type something will ya"
+        messages={{
+          valueMissing: "This value is required",
+          tooShort: "Input is too short",
+          tooLong: "Input is too long",
+        }}
       />
     </div>
 
