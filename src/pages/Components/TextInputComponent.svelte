@@ -169,6 +169,6 @@
   }
 
   .retry-component {
-    margin: 100px 0;
+    margin: 20px 0 100px 0;
   }
 </style>

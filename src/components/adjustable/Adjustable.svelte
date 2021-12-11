@@ -4,6 +4,7 @@
   let isAnimating = true;
   let elem;
   let prevName;
+  let timer;
 
   async function nextFrame() {
     return new Promise(requestAnimationFrame);
@@ -23,6 +24,7 @@
         elem.style.height = `${elem.firstChild.scrollHeight}px`;
       } else {
         isAnimating = false;
+        clearTimeout(timer);
       }
     }
 
@@ -45,6 +47,14 @@
 
   beforeUpdate(async () => {
     if (isAnimating) {
+      clearTimeout(timer);
+      // Short circuit if something unexpected happens
+      // (TransitionEnd is never triggered)
+      timer = setTimeout(() => {
+        elem.style.height = "auto";
+        elem.style.overflow = "visible";
+        elem.style.opacity = 1;
+      }, 900);
       return;
     }
 

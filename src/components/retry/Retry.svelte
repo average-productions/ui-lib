@@ -1,14 +1,10 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import { Status } from "../../models/types";
+  import { PendingType, Status } from "../../models/types";
   import Adjustable from "../adjustable/Adjustable.svelte";
   import Pending from "./Pending.svelte";
   export let status: Status = Status.DEFAULT;
   export let retry;
-
-  const dispatch = createEventDispatcher();
-
-  console.log("retry", retry);
 </script>
 
 <Adjustable name={status}>

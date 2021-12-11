@@ -15,6 +15,11 @@ export type mediaName =
   | "wide"
   | "super";
 
+export enum PendingType {
+  SPINNER = "spinner",
+  SKELETON = "skeleton",
+}
+
 export enum MediaName {
   MOBILE = "mobile",
   LANDSCAPE = "landscape",

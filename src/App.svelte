@@ -5,9 +5,10 @@
   import Header from "./pages/Header/Header.svelte";
   import Footer from "./pages/Footer/Footer.svelte";
   import Components from "./pages/Components/Components.svelte";
+  import { theme } from "./state/theme";
 </script>
 
-<div class="app">
+<div class={`app ${$theme}`}>
   <Router>
     <main>
       <Header />
