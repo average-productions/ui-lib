@@ -9,6 +9,8 @@
   --color-link: var(--blue400);
   --color-input: var(--blue100);
   --color-input-border: #49557a;
+  --color-disabled-bg: var(--black100);
+  --color-disabled-fg: var(--black300);
 }
 
 :root {
@@ -31,6 +33,7 @@
   --blue700: #0074e8;
   --blue600: #0080ff;
   --blue400: #5eaeff;
+  --blue150: #e0edfc;
   --blue100: #e5eff9;
   --blue50: #f2f7fc;
 
@@ -53,9 +56,12 @@
 
   --color-button: var(--blue);
   --color-button-hover: var(--blue600);
+  --color-button-shadow: var(--blue900);
   --color-button-ghost-border: var(--blue);
   --color-button-ghost-text: var(--color-button);
   --color-button-ghost-hover: var(--blue100);
+  --color-disabled-bg: var(--black300);
+  --color-disabled-fg: var(--black600);
   --box-shadow: 0 4px 16px -7px var(--blue400);
   --box-shadow-hover: 0 4px 16px -7px transparent;
   --color-text: #2e2d2e;

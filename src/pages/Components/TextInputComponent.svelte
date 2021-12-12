@@ -10,6 +10,7 @@
   import RedThing from "./RedThing.svelte";
   import Retry from "../../components/retry/Retry.svelte";
   import Card from "../../components/card/Card.svelte";
+  import Button from "../../components/buttons/Button.svelte";
 
   let valueOne;
   let valueTwo = "Demo input";
@@ -46,7 +47,7 @@
   }
 
   let status = Status.PENDING;
-  function setStatusPending() {
+  function setStatusPending(ev) {
     status = Status.PENDING;
   }
 
@@ -109,11 +110,40 @@
     </div>
   </Columns>
 
-  <button on:click={setStatusPending}> status pending </button>
-
-  <button on:click={setStatusError}> status error </button>
-
-  <button on:click={setStatusDefault}> status default </button>
+  <Card>
+    <Columns media={MediaName.TABLET}>
+      <div>
+        <Button onClick={setStatusError} small>status error</Button>
+      </div>
+      <div>
+        <Button onClick={setStatusError}>status error</Button>
+      </div>
+      <div>
+        <Button
+          onClick={setStatusPending}
+          ghost
+          data={{
+            aurelian: "come true",
+          }}>status pending</Button
+        >
+      </div>
+      <div>
+        <Button onClick={setStatusError} block>status error</Button>
+      </div>
+      <div>
+        <Button onClick={setStatusDefault} transparent>status default</Button>
+      </div>
+      <div>
+        Test <Button
+          onClick={setStatusPending}
+          data={{
+            evil: "come true",
+          }}
+          asLink>status pending</Button
+        > Evil
+      </div>
+    </Columns>
+  </Card>
 
   <div class="retry-component">
     <Retry {status} {retry}>
@@ -164,11 +194,11 @@
 </Page>
 
 <style lang="scss">
-  div {
-    margin: 20px 0 0 0;
-  }
-
   .retry-component {
     margin: 20px 0 100px 0;
+  }
+
+  :global(.columns > div) {
+    margin: 0 0 20px 0;
   }
 </style>

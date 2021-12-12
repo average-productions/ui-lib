@@ -22,8 +22,8 @@
     position: relative;
 
     @include landscape {
-      margin: 0 0 9px 0;
-      height: 16px;
+      margin: 0 0 11px 0;
+      height: 12px;
     }
 
     &:nth-child(3) {

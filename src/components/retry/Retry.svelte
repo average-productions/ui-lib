@@ -2,24 +2,19 @@
   import { createEventDispatcher } from "svelte";
   import { PendingType, Status } from "../../models/types";
   import Adjustable from "../adjustable/Adjustable.svelte";
+  import Error from "./Error.svelte";
   import Pending from "./Pending.svelte";
   export let status: Status = Status.DEFAULT;
   export let retry;
+  export let errorText = "";
 </script>
 
 <Adjustable name={status}>
   {#if status === Status.PENDING}
-    <Pending />
+    <Pending type={PendingType.SKELETON} />
   {:else if status === Status.ERROR}
-    <div class="retry-error">error</div>
+    <Error {retry} {errorText} />
   {:else}
     <slot />
   {/if}
 </Adjustable>
-
-<style lang="scss">
-  .retry-error {
-    height: 300px;
-    background-color: red;
-  }
-</style>
