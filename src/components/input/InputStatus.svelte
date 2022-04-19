@@ -27,11 +27,12 @@
     font-size: 1.5rem;
     font-style: italic;
     color: var(--color-text-passive);
-    min-height: 20px;
+    height: 22px;
+    overflow: visible;
 
     @include tablet {
       font-size: 1.7rem;
-      min-height: 22px;
+      height: 25px;
     }
 
     & > div {

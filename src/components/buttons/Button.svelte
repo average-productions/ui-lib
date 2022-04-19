@@ -21,6 +21,7 @@
 </script>
 
 <button
+  class="button"
   on:click={internalClick}
   class:action
   class:ghost
@@ -132,11 +133,19 @@
       background-color: var(--color-disabled-bg);
       color: var(--color-disabled-fg);
       box-shadow: 0 4px 16px -7px transparent;
+
+      & > svg {
+        fill: var(--color-disabled-bg);
+      }
     }
   }
 
   :global(.action > svg) {
     fill: var(--color-fg);
+  }
+
+  :global(.action:disabled > svg) {
+    fill: var(--color-disabled-fg);
   }
 
   :global(.action.ghost > svg, .action.transparent > svg) {

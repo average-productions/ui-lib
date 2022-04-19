@@ -104,9 +104,19 @@
     <div class="full">
       <hr />
     </div>
+    <div class="input-with-button">
+      <Input
+        name="button besides"
+        label="Button besides"
+        bind:value={valueTwo}
+        hint="Type something will ya"
+      />
+      <Button onClick={() => {}}>Button</Button>
+    </div>
 
-    <div>
-      <Input name="text-input-demo" bind:value={valueTwo} />
+    <div class="input-with-button">
+      <Input name="text-input-demo" bind:value={valueTwo} hint="No label" />
+      <Button onClick={() => {}}>Button</Button>
     </div>
   </Columns>
 

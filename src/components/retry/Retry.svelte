@@ -11,7 +11,7 @@
 
 <Adjustable name={status}>
   {#if status === Status.PENDING}
-    <Pending type={PendingType.SKELETON} />
+    <Pending type={PendingType.SPINNER} />
   {:else if status === Status.ERROR}
     <Error {retry} {errorText} />
   {:else}
